@@ -32,3 +32,10 @@ class Stock:
             print(response.status_code + " Error has occurred")
             return
         return response.json()
+
+    def __get_company(self, url):
+        response = requests.get(url + self.symbol + "/company")
+        if response.status_code == '404':
+            print(response.status_code + " Error has occurred")
+            return
+        return response.json()
