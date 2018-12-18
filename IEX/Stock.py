@@ -19,9 +19,9 @@ class Stock:
             return
         return response.json()
 
-    def __get_chart(self,url):
+    def __get_chart(self, url):
         response = requests.get(url + self.symbol + '/chart/1y')
-        if(response.status_code == '404'):
+        if response.status_code == '404':
             print(response.status_code + " Error has occurred")
             return
         return response.json()
