@@ -4,15 +4,13 @@ import requests
 class Stock:
     def __init__(self, symbol):
         self.symbol = symbol
-        self.book = ""
-        self.chart = ""
-        self.earnings = ""
+        self.data = {}
 
     def build_stock(self):
         url = "https://api.iextrading.com/1.0/stock/"
-        self.book = self.__get_book(url)
-        self.chart = self.__get_chart(url)
-        self.earnings = self._get_earnings()
+        self.data["book"] = self.__get_book(url)
+        self.data["chart"] = self.__get_chart(url)
+        self.data["earnings"] = self._get_earnings()
 
     def __get_book(self, url):
         response = requests.get(url + self.symbol + '/book')
