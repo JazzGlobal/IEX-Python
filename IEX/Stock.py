@@ -15,7 +15,13 @@ class Stock:
         self.data["dividends"] = self.__get_dividends(url)
 
     def get_average_high(self):
-        pass
+        if len(self.data["chart"]) < 1:
+            return
+        total = 0
+        for value in self.data["chart"]:
+            total += int(value['high'])
+            print(total)
+        return round(total / len(self.data["chart"]), 2)
 
     def __get_book(self, url):
         response = requests.get(url + self.symbol + '/book')
