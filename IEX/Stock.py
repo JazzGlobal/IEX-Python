@@ -8,11 +8,11 @@ class Stock:
 
     def build_stock(self):
         url = "https://api.iextrading.com/1.0/stock/"
-        self.data["book"] = self.__get_book(url)
+        #self.data["book"] = self.__get_book(url)
         self.data["chart"] = self.__get_chart(url)
-        self.data["earnings"] = self.__get_earnings()
-        self.data["company"] = self.__get_company(url)
-        self.data["dividends"] = self.__get_dividends(url)
+        #self.data["earnings"] = self.__get_earnings()
+        #self.data["company"] = self.__get_company(url)
+        #self.data["dividends"] = self.__get_dividends(url)
 
     def get_average_high(self):
         if len(self.data["chart"]) < 1:
@@ -22,6 +22,14 @@ class Stock:
             total += int(value['high'])
             print(total)
         return round(total / len(self.data["chart"]), 2)
+
+    def get_high(self):
+        if len(self.data["chart"]) < 1:
+            return
+        high_list = []
+        for value in self.data["chart"]:
+            high_list.append(value["high"])
+        return round(max(high_list), 2)
 
     def __get_book(self, url):
         response = requests.get(url + self.symbol + '/book')
