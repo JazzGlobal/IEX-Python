@@ -31,6 +31,14 @@ class Stock:
             high_list.append(value["high"])
         return round(max(high_list), 2)
 
+    def get_low(self):
+        if len(self.data["chart"]) < 1:
+            return
+        low_list = []
+        for value in self.data["chart"]:
+            low_list.append(value["low"])
+        return round(min(low_list), 2)
+
     def __get_book(self, url):
         response = requests.get(url + self.symbol + '/book')
         if response.status_code == '404':
