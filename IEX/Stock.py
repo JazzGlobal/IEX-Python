@@ -14,6 +14,9 @@ class Stock:
         self.data["company"] = self.__get_company(url)
         self.data["dividends"] = self.__get_dividends(url)
 
+    def get_average_high(self):
+        pass
+
     def __get_book(self, url):
         response = requests.get(url + self.symbol + '/book')
         if response.status_code == '404':
