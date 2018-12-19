@@ -31,6 +31,14 @@ class Stock:
             high_list.append(value["high"])
         return round(max(high_list), 2)
 
+    def get_average_low(self):
+        if len(self.data["chart"]) < 1:
+            return
+        total = 0
+        for value in self.data["chart"]:
+            total += value["low"]
+        return round(total / len(self.data["chart"]), 2)
+
     def get_low(self):
         if len(self.data["chart"]) < 1:
             return
